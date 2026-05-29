@@ -1,0 +1,37 @@
+@mixin var($name) {
+  #{--#{$name}}: var(--#{$name});
+}
+
+@function bg() {
+  @return var(--bg);
+}
+@function card() {
+  @return var(--card);
+}
+@function text() {
+  @return var(--text);
+}
+@function text-muted() {
+  @return var(--text-muted);
+}
+@function border() {
+  @return var(--border);
+}
+@function primary() {
+  @return var(--primary);
+}
+@function primary-hover() {
+  @return var(--primary-hover);
+}
+@function success() {
+  @return var(--success);
+}
+@function error() {
+  @return var(--error);
+}
+@function input-bg() {
+  @return var(--input-bg);
+}
+@function shadow() {
+  @return var(--shadow);
+}

@@ -1,0 +1,196 @@
+@use '@/styles/theme' as *;
+@use 'sass:color';
+
+.container {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: system-ui, sans-serif;
+  color: text();
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.section {
+  background: card();
+  border: 1px solid border();
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  transition:
+    background 0.3s,
+    border-color 0.3s;
+}
+
+.label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: text();
+}
+
+.fileInput {
+  width: 100%;
+  padding: 10px;
+  border: 2px dashed border();
+  border-radius: 12px;
+  background: input-bg();
+  color: text();
+  cursor: pointer;
+  text-align: center;
+  transition:
+    border-color 0.2s,
+    background 0.3s;
+
+  &:hover {
+    border-color: var(--primary);
+  }
+}
+
+.filename {
+  margin-top: 8px;
+  color: var(--success);
+  font-size: 14px;
+}
+
+.formatGroup {
+  display: flex;
+  gap: 12px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: text();
+}
+
+.formatBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.textInput {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid border();
+  border-radius: 8px;
+  font-size: 14px;
+  background: input-bg();
+  color: text();
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s,
+    background 0.3s;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+
+  &:disabled {
+    background: var(--bg);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover:not(:disabled) {
+    background: var(--primary-hover);
+  }
+
+  &:disabled {
+    background: text-muted();
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+.btnDisabled {
+  background: text-muted();
+  cursor: not-allowed;
+}
+
+.error {
+  margin-top: 16px;
+  padding: 12px;
+
+  background: color-mix(in srgb, var(--error) 10%, var(--card));
+  color: var(--error);
+  border: 1px solid color-mix(in srgb, var(--error) 30%, transparent);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.results {
+  margin-top: 24px;
+  padding: 16px;
+  background: color-mix(in srgb, var(--success) 10%, var(--card));
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--success) 30%, transparent);
+}
+
+.resultsTitle {
+  margin: 0 0 12px;
+  color: var(--success);
+  font-size: 18px;
+}
+
+.resultItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid border();
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.resultFilename {
+  flex: 1;
+  font-size: 14px;
+  word-break: break-all;
+  color: text();
+}
+
+.downloadBtn {
+  padding: 6px 16px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+
+  &:hover {
+    background: var(--primary-hover);
+  }
+}

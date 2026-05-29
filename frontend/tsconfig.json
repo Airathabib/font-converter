@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["DOM", "DOM.Iterable", "ES2020"],
+    "module": "ESNext",
+    "types": ["node", "vite/client"],
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "baseUrl": ".",
+    "paths": { "@/*": ["src/*"] }
+  },
+  "include": [
+    "src",
+    "src/**/*.d.ts",
+    "src/types/**/*.d.ts",
+    "electron/services",
+    "electron/types/electron.d.ts"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

@@ -1,0 +1,153 @@
+# ─────────────────────────────────────────────
+# 🔹 Корень проекта (монорепозиторий)
+# ─────────────────────────────────────────────
+# Зависимости (устанавливаются через npm install)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Сборки и артефакты
+dist/
+dist-app/
+dist-manual/
+dist-electron/
+build-vite/
+*.exe
+*.dmg
+*.AppImage
+*.deb
+*.rpm
+*.zip
+*.tar.gz
+
+# Кэш и временные файлы
+.cache/
+.temp/
+*.log
+*.tmp
+*.swp
+*.swo
+*~
+
+# Переменные окружения (никогда не коммитить!)
+.env
+.env.local
+.env.*.local
+*.env
+
+# Секреты и ключи
+*.key
+*.pem
+*.crt
+*.p12
+secrets/
+credentials.json
+
+# ─────────────────────────────────────────────
+# 🔹 Frontend (React + Vite + Electron)
+# ─────────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/dist-electron/
+frontend/dist-app/
+frontend/dist-manual/
+frontend/.vite/
+frontend/tsconfig.tsbuildinfo
+
+# Electron-specific
+frontend/electron/*.js          # Скомпилированные файлы (исходники в .ts)
+frontend/electron/*.js.map
+frontend/preload.js
+frontend/preload.js.map
+
+# Vite cache
+frontend/node_modules/.vite/
+
+# Сборки для публикации
+frontend/out/
+frontend/release/
+
+# ─────────────────────────────────────────────
+# 🔹 Backend (Node.js + Express)
+# ─────────────────────────────────────────────
+backend/node_modules/
+backend/dist/
+backend/*.js                    # Скомпилированные файлы (исходники в .ts)
+backend/*.js.map
+backend/tsconfig.tsbuildinfo
+backend/npm-debug.log*
+
+# ─────────────────────────────────────────────
+# 🔹 IDE и редакторы
+# ─────────────────────────────────────────────
+# VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/settings.json
+*.code-workspace
+
+# WebStorm / IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ─────────────────────────────────────────────
+# 🔹 Операционные системы
+# ─────────────────────────────────────────────
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+.fuse_hidden*
+.Trash-*
+.nfs*
+
+# ─────────────────────────────────────────────
+# 🔹 Тесты и покрытие
+# ─────────────────────────────────────────────
+coverage/
+.nyc_output/
+*.lcov
+jest.config.js
+vitest.config.js.timestamp-*
+
+# ─────────────────────────────────────────────
+# 🔹 Electron-builder кэш (можно игнорировать)
+# ─────────────────────────────────────────────
+# Локальный кэш сборщика (скачивается при необходимости)
+**/electron-builder-cache/
+**/winCodeSign/
+**/macOs-*/ 
+**/linux-*
+
+# ─────────────────────────────────────────────
+# 🔹 Что КОММИТИТЬ (явные исключения)
+# ─────────────────────────────────────────────
+# !*.ico
+# !*.icns
+# !*.png
+# build/icon.ico
+# build/icon.icns
+# build/icon.png

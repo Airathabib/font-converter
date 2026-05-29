@@ -1,0 +1,68 @@
+:root {
+  --bg: #f1f5f9;
+  --card: #ffffff;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --success: #22c55e;
+  --error: #ef4444;
+  --input-bg: #ffffff;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+// 👇 Тёмная тема
+:root[data-theme='dark'] {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --primary: #60a5fa;
+  --primary-hover: #3b82f6;
+  --success: #4ade80;
+  --error: #f87171;
+  --input-bg: #334155;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+// 👇 Глобальные стили
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  line-height: 1.5;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+// Скроллбар
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+  &:hover {
+    background: var(--text-muted);
+  }
+}

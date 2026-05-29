@@ -1,0 +1,31 @@
+# ─────────────────────────────────────────────
+# 🔹 Зависимости
+# ─────────────────────────────────────────────
+node_modules/
+
+# ─────────────────────────────────────────────
+# 🔹 Сборки и артефакты
+# ─────────────────────────────────────────────
+# Vite Production Build
+dist/
+
+# Electron Compiled Code
+dist-electron/
+
+# Electron Packager Output (если используете)
+dist-app/
+
+# Manual Packaging Output (ВАЖНО: здесь лежит весь electron и node_modules)
+dist-manual/
+
+# Vite Cache
+.vite/
+
+# ─────────────────────────────────────────────
+#  IDE и Кэш
+# ─────────────────────────────────────────────
+*.tsbuildinfo
+coverage/
+
+# macOS
+.DS_Store
