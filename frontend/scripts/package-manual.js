@@ -1,4 +1,3 @@
-// frontend/scripts/package-manual.js
 const fs = require('fs-extra');
 const path = require('path');
 const { execSync } = require('child_process');
@@ -21,9 +20,13 @@ fs.copySync(path.join(ROOT, 'dist'), path.join(DIST_APP, 'dist'));
 
 // 3. Копируем скомпилированный Electron-код
 console.log('⚙️ Копируем Electron-код...');
-fs.copySync(path.join(ROOT, 'dist-electron'), path.join(DIST_APP, 'dist-electron'));
+fs.copySync(
+	path.join(ROOT, 'dist-electron'),
+	path.join(DIST_APP, 'dist-electron')
+);
 
 // 4. Создаём package.json для продакшена
+
 console.log('📝 Создаём package.json...');
 const pkg = {
 	name: 'font-converter-pro',
@@ -31,16 +34,28 @@ const pkg = {
 	main: 'dist-electron/main.js',
 	scripts: { start: 'electron .' },
 	dependencies: {
-		'react': '^18.2.0',
+		// 🔹 Фронтенд
+		react: '^18.2.0',
 		'react-dom': '^18.2.0',
-		'axios': '^1.6.0',
+		axios: '^1.6.0',
 		'form-data': '^4.0.0',
-		'express': '^4.18.2',
-		'cors': '^2.8.5',
-		'multer': '^1.4.5-lts.1',
-		'ttf2woff': '^2.0.2',
-		'ttf2woff2': '^5.0.0',
-		'electron': '^28.0.0'
+
+		// 🔹 Встроенный бэкенд (Express)
+		express: '^4.18.2',
+		cors: '^2.8.5',
+		multer: '^1.4.5-lts.1',
+
+		// 🔹 Конвертация шрифтов
+		ttf2woff: '^2.0.2',
+		ttf2woff2: '^5.0.0',
+
+		// 🔹 Генерация фавиконок (НОВОЕ!)
+		favicons: '^7.2.0',
+		sharp: '^0.33.2',
+		'adm-zip': '^0.5.10',
+
+		// 🔹 Electron runtime
+		electron: '^28.0.0'
 	}
 };
 fs.writeFileSync(

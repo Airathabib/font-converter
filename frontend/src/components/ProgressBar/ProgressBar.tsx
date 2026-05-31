@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ProgressBar.module.scss';
+import cls from './ProgressBar.module.scss';
 
 interface Props {
   value: number;
@@ -13,14 +13,14 @@ export const ProgressBar: React.FC<Props> = ({
   success = false,
 }) => (
   <div>
-    <div className={styles.bar}>
+    <div className={cls.bar}>
       <div
-        className={`${styles.bar__fill} ${success ? styles['bar__fill--success'] : ''}`}
+        className={`${cls.bar__fill} ${success ? cls['bar__fill--success'] : ''}`}
         style={{ width: `${Math.min(100, Math.max(0, value))}%` }}
       />
     </div>
     {label && (
-      <div className={styles.label}>
+      <div className={cls.label}>
         <span>{label}</span>
         <span>{Math.round(value)}%</span>
       </div>

@@ -1,42 +1,58 @@
+import { FaviconFormat } from '@/services/api';
+
 export type FontFormat = 'woff' | 'woff2';
 
 export interface FontFile {
-  id: string;
-  name: string;
-  path: string;
-  size: number;
-  status:
-    | 'pending'
-    | 'validating'
-    | 'valid'
-    | 'invalid'
-    | 'converting'
-    | 'done'
-    | 'error';
-  error?: string;
-  progress: number;
-  converted?: Record<FontFormat, { path: string; size: number }>;
+	id: string;
+	name: string;
+	path: string;
+	size: number;
+	status:
+		| 'pending'
+		| 'validating'
+		| 'valid'
+		| 'invalid'
+		| 'converting'
+		| 'done'
+		| 'error';
+	error?: string;
+	progress: number;
+	converted?: Record<FontFormat, { path: string; size: number }>;
 }
 
 export interface ConvertOptions {
-  formats: FontFormat[];
-  outputPath: string;
-  overwrite?: boolean;
+	formats: FontFormat[];
+	outputPath: string;
+	overwrite?: boolean;
 }
 
 export interface ConvertProgress {
-  fileId: string;
-  format: FontFormat;
-  progress: number;
-  message?: string;
+	fileId: string;
+	format: FontFormat;
+	progress: number;
+	message?: string;
 }
 
 export interface ValidationResult {
-  isValid: boolean;
-  error?: string;
-  info?: {
-    tables: string[];
-    glyphCount: number;
-    unitsPerEm: number;
-  };
+	isValid: boolean;
+	error?: string;
+	info?: {
+		tables: string[];
+		glyphCount: number;
+		unitsPerEm: number;
+	};
+}
+
+export interface FaviconFile {
+	filename: string;
+	mimeType: string;
+	data: string; // base64
+	size: number;
+}
+
+export interface FaviconResponse {
+	appName: string;
+	files: Record<FaviconFormat, FaviconFile>;
+	html: string;
+	manifest: string;
 }

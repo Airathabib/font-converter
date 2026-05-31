@@ -1,0 +1,338 @@
+@use '@/styles/theme' as *;
+@use 'sass:color';
+
+// ─────────────────────────────────────────────
+// 🔹 ОБЩИЕ СТИЛИ (скопированы из FontConverter для единообразия)
+// ─────────────────────────────────────────────
+.container {
+	max-width: 520px;
+	margin: 0 auto;
+	padding: 24px;
+	font-family: system-ui, sans-serif;
+	color: text();
+}
+
+.title {
+	text-align: center;
+	margin-bottom: 24px;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.section {
+	background: card();
+	border: 1px solid border();
+	border-radius: 12px;
+	padding: 16px;
+	margin-bottom: 16px;
+	transition:
+		background 0.3s,
+		border-color 0.3s;
+}
+
+.label {
+	display: block;
+	font-weight: 500;
+	margin-bottom: 10px;
+	color: text();
+}
+
+.fileInput {
+	width: 100%;
+	padding: 10px;
+	border: 2px dashed border();
+	border-radius: 12px;
+	background: input-bg();
+	color: text();
+	cursor: pointer;
+	text-align: center;
+	transition:
+		border-color 0.2s,
+		background 0.3s;
+
+	&:hover {
+		border-color: var(--primary);
+	}
+}
+
+.filename {
+	margin-top: 8px;
+	color: var(--success);
+	font-size: 14px;
+}
+
+.textInput {
+	width: 100%;
+	padding: 10px 12px;
+	border: 1px solid border();
+	border-radius: 8px;
+	font-size: 14px;
+	background: input-bg();
+	color: text();
+	box-sizing: border-box;
+	transition:
+		border-color 0.2s,
+		background 0.3s;
+
+	&:focus {
+		outline: none;
+		border-color: var(--primary);
+	}
+
+	&:disabled {
+		background: var(--bg);
+		cursor: not-allowed;
+		opacity: 0.6;
+	}
+}
+
+.btn {
+	width: 100%;
+	padding: 12px;
+	background: var(--primary);
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s;
+
+	&:hover:not(:disabled) {
+		background: var(--primary-hover);
+	}
+
+	&:disabled {
+		background: text-muted();
+		cursor: not-allowed;
+		opacity: 0.7;
+	}
+}
+
+.btnDisabled {
+	background: text-muted();
+	cursor: not-allowed;
+}
+
+.error {
+	margin-top: 16px;
+	padding: 12px;
+	background: color-mix(in srgb, var(--error) 10%, var(--card));
+	color: var(--error);
+	border: 1px solid color-mix(in srgb, var(--error) 30%, transparent);
+	border-radius: 8px;
+	font-size: 14px;
+}
+
+.results {
+	margin-top: 24px;
+	padding: 16px;
+	background: color-mix(in srgb, var(--success) 10%, var(--card));
+	border-radius: 12px;
+	border: 1px solid color-mix(in srgb, var(--success) 30%, transparent);
+}
+
+.resultsTitle {
+	margin: 0 0 12px;
+	color: var(--success);
+	font-size: 18px;
+}
+
+.resultItem {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 8px 0;
+	border-bottom: 1px solid border();
+
+	&:last-child {
+		border-bottom: none;
+	}
+}
+
+.resultFilename {
+	flex: 1;
+	font-size: 14px;
+	word-break: break-all;
+	color: text();
+}
+
+.downloadBtn {
+	padding: 6px 16px;
+	background: var(--primary);
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: background 0.2s;
+
+	&:hover {
+		background: var(--primary-hover);
+	}
+}
+
+.formatBadge {
+	display: inline-block;
+	padding: 4px 12px;
+	background: var(--primary);
+	color: #fff;
+	border-radius: 12px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+// ─────────────────────────────────────────────
+// 🔹 УНИКАЛЬНЫЕ СТИЛИ ДЛЯ ФАВИКОНОК
+// ─────────────────────────────────────────────
+
+.preview {
+	margin-top: 12px;
+	text-align: center;
+
+	&__image {
+		max-width: 120px;
+		max-height: 120px;
+		border-radius: 12px;
+		border: 2px solid border();
+		background: input-bg();
+		object-fit: contain;
+	}
+}
+
+.formatGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 10px;
+}
+
+.formatCard {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	padding: 12px;
+	background: input-bg();
+	border: 2px solid border();
+	border-radius: 10px;
+	cursor: pointer;
+	transition: border-color 0.2s;
+
+	&:hover {
+		border-color: var(--primary);
+	}
+
+	&:has(input:checked) {
+		border-color: var(--primary);
+		background: color-mix(in srgb, var(--primary) 5%, input-bg());
+	}
+
+	input {
+		margin-top: 3px;
+		cursor: pointer;
+		accent-color: var(--primary);
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	&__label {
+		font-weight: 500;
+		font-size: 14px;
+		color: text();
+	}
+
+	&__desc {
+		font-size: 12px;
+		color: text-muted();
+	}
+}
+
+.htmlSection {
+	margin-top: 16px;
+	padding: 12px;
+	background: input-bg();
+	border-radius: 8px;
+	border: 1px solid border();
+}
+
+.htmlHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+	font-weight: 500;
+	color: text();
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.copyBtn {
+	padding: 4px 12px;
+	background: var(--primary);
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	font-size: 12px;
+	cursor: pointer;
+	transition: background 0.2s;
+
+	&:hover {
+		background: var(--primary-hover);
+	}
+}
+
+.htmlCode {
+	max-height: 200px;
+	overflow: auto;
+	padding: 12px;
+	background: var(--bg);
+	border-radius: 6px;
+	font-size: 12px;
+	font-family: monospace;
+	color: text-muted();
+	white-space: pre-wrap;
+	word-break: break-all;
+	margin: 0;
+}
+
+.resetBtn {
+	margin-top: 16px;
+	padding: 8px 16px;
+	background: transparent;
+	border: 1px solid border();
+	border-radius: 6px;
+	color: text-muted();
+	cursor: pointer;
+	font-size: 14px;
+	transition: all 0.2s;
+
+	&:hover {
+		border-color: var(--error);
+		color: var(--error);
+		background: color-mix(in srgb, var(--error) 5%, transparent);
+	}
+}
+
+// Адаптив для мобильных
+@media (max-width: 600px) {
+	.container {
+		padding: 16px;
+	}
+
+	.formatGrid {
+		grid-template-columns: 1fr;
+	}
+
+	.htmlHeader {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.copyBtn {
+		width: 100%;
+	}
+}

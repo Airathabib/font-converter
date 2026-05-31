@@ -1,0 +1,1 @@
+export { FaviconConverter } from './FaviconConverter';

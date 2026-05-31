@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { convertFont, FontFormat, ConvertedFile } from '../../services/api';
-import styles from './FontConverter.module.scss';
+import cls from './FontConverter.module.scss';
 
 interface Props {
   onPickDirectory?: () => Promise<string[] | null>;
@@ -74,43 +74,43 @@ export const FontConverter: React.FC<Props> = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>🔤 Конвертер шрифтов</h2>
+    <div className={cls.container}>
+      <h2 className={cls.title}>🔤 Конвертер шрифтов</h2>
 
-      <section className={styles.section}>
-        <label className={styles.label}>
+      <section className={cls.section}>
+        <label className={cls.label}>
           1. Выберите файл шрифта (.ttf, .otf, .woff):
         </label>
         <input
           type='file'
           accept='.ttf,.otf,.woff'
           onChange={handleFileSelect}
-          className={styles.fileInput}
+          className={cls.fileInput}
           id='file-input'
         />
         {selectedFile && (
-          <p className={styles.filename}>✓ {selectedFile.name}</p>
+          <p className={cls.filename}>✓ {selectedFile.name}</p>
         )}
       </section>
 
-      <section className={styles.section}>
-        <label className={styles.label}>2. Форматы:</label>
-        <div className={styles.formatGroup}>
+      <section className={cls.section}>
+        <label className={cls.label}>2. Форматы:</label>
+        <div className={cls.formatGroup}>
           {(['woff', 'woff2'] as FontFormat[]).map((fmt) => (
-            <label key={fmt} className={styles.checkboxLabel}>
+            <label key={fmt} className={cls.checkboxLabel}>
               <input
                 type='checkbox'
                 checked={formats.includes(fmt)}
                 onChange={() => handleFormatToggle(fmt)}
               />
-              <span className={styles.formatBadge}>{fmt.toUpperCase()}</span>
+              <span className={cls.formatBadge}>{fmt.toUpperCase()}</span>
             </label>
           ))}
         </div>
       </section>
 
-      <section className={styles.section}>
-        <label className={styles.label}>3. Имя файла:</label>
+      <section className={cls.section}>
+        <label className={cls.label}>3. Имя файла:</label>
         <input
           type='text'
           value={savePrefix}
@@ -118,7 +118,7 @@ export const FontConverter: React.FC<Props> = () => {
             setSavePrefix(e.target.value.replace(/[<>:"|?*\\]/g, ''))
           }
           placeholder='Введите имя'
-          className={styles.textInput}
+          className={cls.textInput}
           disabled={!convertedFiles}
         />
       </section>
@@ -126,30 +126,30 @@ export const FontConverter: React.FC<Props> = () => {
       <button
         onClick={handleConvert}
         disabled={isConverting || !selectedFile || formats.length === 0}
-        className={`${styles.btn} ${!selectedFile || formats.length === 0 ? styles.btnDisabled : ''}`}
+        className={`${cls.btn} ${!selectedFile || formats.length === 0 ? cls.btnDisabled : ''}`}
       >
         {isConverting ? '⏳ Конвертация...' : '🚀 Конвертировать'}
       </button>
 
-      {error && <p className={styles.error}>❌ {error}</p>}
+      {error && <p className={cls.error}>❌ {error}</p>}
 
       {convertedFiles && (
-        <section className={styles.results}>
-          <h3 className={styles.resultsTitle}>✅ Готово!</h3>
+        <section className={cls.results}>
+          <h3 className={cls.resultsTitle}>✅ Готово!</h3>
           {(Object.entries(convertedFiles) as [FontFormat, ConvertedFile][])
 
             .filter(([_, file]) => file !== undefined)
             .map(([format, file]) => (
-              <div key={format} className={styles.resultItem}>
-                <span className={styles.formatBadge}>
+              <div key={format} className={cls.resultItem}>
+                <span className={cls.formatBadge}>
                   {format.toUpperCase()}
                 </span>
-                <span className={styles.resultFilename}>
+                <span className={cls.resultFilename}>
                   {savePrefix || file.filename}.{format}
                 </span>
                 <button
                   onClick={() => handleDownload(file, format)}
-                  className={styles.downloadBtn}
+                  className={cls.downloadBtn}
                 >
                   ⬇️ Скачать
                 </button>
