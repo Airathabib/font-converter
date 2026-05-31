@@ -1,0 +1,14 @@
+# Bash-скрипты Husky — всегда LF
+.husky/* text eol=lf
+
+# 🔹 Исходный код — LF
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.scss text eol=lf
+*.md text eol=lf
+
+# 🔹 Bat-файлы для Windows — CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
