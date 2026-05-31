@@ -47,7 +47,6 @@ const AVAILABLE_FORMATS: {
 ];
 
 export const FaviconConverter: React.FC<Props> = () => {
-	// 🔹 Используем хук для всей логики генерации
 	const {
 		selectedFile,
 		previewUrl,
@@ -61,7 +60,6 @@ export const FaviconConverter: React.FC<Props> = () => {
 		reset
 	} = useFaviconGenerator();
 
-	// 🔹 Локальный state только для UI: форматы и appName
 	const [formats, setFormats] = useState<FaviconFormat[]>([
 		'favicon.ico',
 		'apple-touch-icon.png',
@@ -84,7 +82,6 @@ export const FaviconConverter: React.FC<Props> = () => {
 		);
 	};
 
-	// ✅ Стало (проще — хук делает всю работу):
 	const handleGenerateClick = async () => {
 		await handleGenerate(formats, appName || 'My App');
 	};
@@ -92,7 +89,6 @@ export const FaviconConverter: React.FC<Props> = () => {
 	const handleCopyClick = async () => {
 		const success = await handleCopyHtml();
 		if (success) {
-			// Опционально: показать тост-уведомление
 			alert('✅ HTML скопирован!');
 		}
 	};

@@ -4,16 +4,12 @@
 	"main": "dist-electron/main.js",
 	"private": true,
 	"scripts": {
-		"dev": "concurrently -n VITE,TS,ELECTRON -c cyan,magenta,yellow \"npm run dev:vite\" \"npm run dev:electron-ts\" \"npm run dev:electron-app\"",
-		"dev:vite": "vite",
-		"dev:electron-ts": "tsc -p electron/tsconfig.electron.json --watch",
-		"dev:electron-app": "wait-on tcp:5173 && set ELECTRON_IS_DEV=1&& electron .",
+		"dev": "vite",
+		"dev:vite": "vite --force",
 		"build:frontend": "vite build",
 		"build:electron": "tsc -p electron/tsconfig.electron.json",
-		"package:manual": "node scripts/package-manual.js",
-		"package:win": "electron-packager . \"Font Converter Pro\" --platform=win32 --arch=x64 --out=dist-app --overwrite --icon=build/icon.ico --asar",
-		"lint": "eslint src --ext ts,tsx",
-		"typecheck": "tsc --noEmit"
+		"build:win": "npm run build:frontend && npm run build:electron && electron-builder --win portable",
+		"package:manual": "node scripts/package-manual.js"
 	},
 	"dependencies": {
 		"adm-zip": "^0.5.17",
@@ -26,6 +22,7 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"sharp": "^0.34.5",
+		"sharp-ico": "^0.1.5",
 		"ttf2woff": "^2.0.2",
 		"ttf2woff2": "^5.0.0"
 	},
@@ -41,6 +38,7 @@
 		"@types/ttf2woff2": "^2.0.2",
 		"@vitejs/plugin-react": "^4.7.0",
 		"concurrently": "^8.2.2",
+		"cross-env": "^10.1.0",
 		"electron": "^28.0.0",
 		"electron-builder": "^24.9.0",
 		"electron-packager": "^17.1.2",
@@ -51,7 +49,6 @@
 		"typescript": "^5.9.3",
 		"vite": "^5.4.21",
 		"vite-plugin-electron": "^0.15.0",
-		"vite-plugin-electron-renderer": "^0.14.5",
 		"wait-on": "^7.2.0"
 	},
 	"build": {

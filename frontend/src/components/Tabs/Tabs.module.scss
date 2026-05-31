@@ -11,6 +11,7 @@
 	width: fit-content;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 16px;
 }
 
 .tab {
@@ -39,6 +40,10 @@
 
 		&:hover {
 			background: var(--primary-hover);
+			color: #f8fafc;
+			transition:
+				background 0.2s,
+				color 0.2s;
 		}
 	}
 

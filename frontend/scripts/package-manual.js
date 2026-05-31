@@ -52,6 +52,7 @@ const pkg = {
 		// 🔹 Генерация фавиконок (НОВОЕ!)
 		favicons: '^7.2.0',
 		sharp: '^0.33.2',
+		'sharp-ico': '^0.1.5',
 		'adm-zip': '^0.5.10',
 
 		// 🔹 Electron runtime

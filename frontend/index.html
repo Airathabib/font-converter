@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Font Converter Pro</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Security-Policy"
+			content="default-src 'self' http://localhost:5173 http://127.0.0.1:3001; 
+                 script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:5173; 
+                 style-src 'self' 'unsafe-inline' http://localhost:5173; 
+                 connect-src 'self' http://localhost:5173 http://127.0.0.1:3001 ws://localhost:5173; 
+                 img-src 'self' data: blob:; 
+                 font-src 'self';" />
+
+		<title>Font Converter Pro</title>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.tsx"></script>
+	</body>
 </html>
