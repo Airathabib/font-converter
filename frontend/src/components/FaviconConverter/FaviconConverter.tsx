@@ -8,7 +8,6 @@ interface Props {
 	onPickOutputPath?: () => Promise<string | null>;
 }
 
-// Доступные форматы для выбора
 const AVAILABLE_FORMATS: {
 	id: FaviconFormat;
 	label: string;
@@ -67,6 +66,7 @@ export const FaviconConverter: React.FC<Props> = () => {
 		'android-chrome-512x512.png'
 	]);
 	const [appName, setAppName] = useState('');
+	const [inputKey, setInputKey] = useState(0); // 🔹 Для сброса file input
 
 	const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0] || null;
@@ -74,6 +74,19 @@ export const FaviconConverter: React.FC<Props> = () => {
 		if (file) {
 			setAppName(file.name.replace(/\.[^.]+$/, ''));
 		}
+	};
+
+	const handleReset = () => {
+		reset();
+		if (formats.length === 0) {
+			setFormats([
+				'favicon.ico',
+				'apple-touch-icon.png',
+				'android-chrome-192x192.png',
+				'android-chrome-512x512.png'
+			]);
+		}
+		setInputKey(prev => prev + 1); // 🔹 Пересоздаёт input
 	};
 
 	const handleFormatToggle = (format: FaviconFormat) => {
@@ -96,16 +109,16 @@ export const FaviconConverter: React.FC<Props> = () => {
 	return (
 		<div className={cls.container}>
 			<h2 className={cls.title}>🎨 Генератор фавиконок</h2>
-			{/* Шаг 1: Выбор изображения */}
+
 			<section className={cls.section}>
 				<label className={cls.label}>1. Выберите изображение:</label>
 				<input
 					type='file'
 					accept='.png,.jpg,.jpeg,.svg,.webp'
 					onChange={handleFileInputChange}
+					key={inputKey} // 🔹 Ключ для сброса выбора файла
 					className={cls.fileInput}
 				/>
-
 				{selectedFile && previewUrl && (
 					<div>
 						<p className={cls.filename}>✓ {selectedFile.name}</p>
@@ -119,7 +132,7 @@ export const FaviconConverter: React.FC<Props> = () => {
 					</div>
 				)}
 			</section>
-			{/* Шаг 2: Название приложения */}
+
 			<section className={cls.section}>
 				<label className={cls.label}>
 					2. Название приложения (для манифеста):
@@ -132,7 +145,7 @@ export const FaviconConverter: React.FC<Props> = () => {
 					className={cls.textInput}
 				/>
 			</section>
-			{/* Шаг 3: Выбор форматов */}
+
 			<section className={cls.section}>
 				<label className={cls.label}>3. Выберите форматы:</label>
 				<div className={cls.formatGrid}>
@@ -151,7 +164,7 @@ export const FaviconConverter: React.FC<Props> = () => {
 					))}
 				</div>
 			</section>
-			{/* Кнопка генерации */}
+
 			<button
 				onClick={handleGenerateClick}
 				disabled={isGenerating || !selectedFile || formats.length === 0}
@@ -159,12 +172,12 @@ export const FaviconConverter: React.FC<Props> = () => {
 			>
 				{isGenerating ? '⏳ Генерация...' : '🚀 Сгенерировать'}
 			</button>
+
 			{error && <p className={cls.error}>❌ {error}</p>}
 
 			{generatedResponse && (
 				<section className={cls.results}>
 					<h3 className={cls.resultsTitle}>✅ Готово!</h3>
-					{/* ZIP архив */}
 					<div className={cls.resultItem}>
 						<span className={cls.formatBadge}>📦 ZIP архив</span>
 						<span className={cls.resultFilename}>
@@ -174,7 +187,6 @@ export const FaviconConverter: React.FC<Props> = () => {
 							⬇️ Скачать
 						</button>
 					</div>
-					{/* HTML-код */}
 					{generatedResponse.html && (
 						<div className={cls.htmlSection}>
 							<div className={cls.htmlHeader}>
@@ -188,12 +200,9 @@ export const FaviconConverter: React.FC<Props> = () => {
 							</pre>
 						</div>
 					)}
-					{/* Кнопка сброса после генерации */}
-					{generatedResponse && (
-						<button onClick={reset} className={cls.resetBtn}>
-							🗑️ Начать заново
-						</button>
-					)}
+					<button onClick={handleReset} className={cls.resetBtn}>
+						🗑️ Начать заново
+					</button>
 				</section>
 			)}
 		</div>

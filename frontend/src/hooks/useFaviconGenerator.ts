@@ -15,7 +15,7 @@ export interface UseFaviconGeneratorReturn {
 	handleGenerate: (formats: FaviconFormat[], appName: string) => Promise<void>;
 	handleDownloadZip: () => void;
 	handleCopyHtml: () => Promise<boolean>;
-	reset: () => void;
+	reset: (onResetComplete?: () => void) => void;
 }
 
 export function useFaviconGenerator(): UseFaviconGeneratorReturn {
